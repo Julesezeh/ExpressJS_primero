@@ -5,7 +5,9 @@ const port = 3000
 
 
 
-
+app.get("/", (req, res) => {
+    res.send("<h1>Who is there?</h1>")
+})
 
 
 
