@@ -9,6 +9,12 @@ app.get("/", (req, res) => {
     res.send("<h1>Who is there?</h1>")
 })
 
+app.get("/chats", () => {
+    res.send("<h1>CHATS</h1>")
+})
+
+console.log(__dirname)
+
 
 
 app.listen(port, () => {
