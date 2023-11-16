@@ -3,18 +3,22 @@ const app = express();
 const host = "127.0.0.1"
 const port = 3000
 const path = require("path");
+// const ejs = require('ejs');
 
 
+app.set('view engine', 'ejs')
+console.log(app.get('views'))
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
-// app.get("/", (req, res) => {
-//     res.sendFile(path.resolve(__dirname + "\\index.html"))
-// })
+app.get("/", (req, res) => {
+    res.render('index')
+})
 
-// app.get("/chats", (req, res) => {
-//     res.sendFile(path.resolve(__dirname + "\\chats.html"))
-// })
+
+app.get("/chats", (req, res) => {
+    res.render('chats')
+})
 
 
 app.listen(port, () => {
