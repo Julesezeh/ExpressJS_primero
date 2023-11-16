@@ -6,9 +6,15 @@ const path = require("path");
 
 
 
-app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "\\index.html"))
-})
+app.use(express.static('public'))
+
+// app.get("/", (req, res) => {
+//     res.sendFile(path.resolve(__dirname + "\\index.html"))
+// })
+
+// app.get("/chats", (req, res) => {
+//     res.sendFile(path.resolve(__dirname + "\\chats.html"))
+// })
 
 
 app.listen(port, () => {
