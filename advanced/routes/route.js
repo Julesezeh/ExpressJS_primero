@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const apiMiddelware = require("../middleware/apiKey");
 
 router.get("/", (req, res) => {
     res.render("index", {
@@ -12,7 +13,7 @@ router.get("/chats", (req, res) => {
     })
 })
 
-router.get("/api/products/", (req, res) => {
+router.get("/api/products/", apiMiddelware, (req, res) => {
     res.json([
         {
             id: 1,
