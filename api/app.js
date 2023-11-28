@@ -11,18 +11,9 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
 
-    // const city = req.body.get("cityName")
-
-    await axios.post(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${"cbd154e0f1c5ef15a3b8eae701d21971"}`)
-        .then((response) => {
-            res.json(response.data);
-            const data = response.data
-            console.log("Weather in ", data.name, " ", data.weather[0])
-        })
-        .catch((error) => (console.log(error)))
-
-
-
+    let response = await axios.post(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${"cbd154e0f1c5ef15a3b8eae701d21971"}`)
+    console.log("STATUS CODE ", response.status)
+    res.json(response.data)
 })
 
 app.listen(3000, () => {
