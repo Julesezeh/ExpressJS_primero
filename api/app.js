@@ -16,6 +16,7 @@ app.post("/", async (req, res) => {
     res.json(response.data)
 })
 
+//Server runs fine. First commit of December 2023
 app.listen(3000, () => {
     console.log("Server is running on port 3000")
 })
