@@ -12,9 +12,31 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
     console.log(req.body.cityName)
-    let response = await axios.post(`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${"cbd154e0f1c5ef15a3b8eae701d21971"}`)
+
+    //Query parameters
+    const city = req.body.cityName;
+    const apiKey = "cbd154e0f1c5ef15a3b8eae701d21971";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+
+    let response = await axios.post(url)
+
+    //API response data
     console.log("STATUS CODE ", response.status)
-    res.json(response.data)
+    console.log(response.data)
+    const data = response.data;
+    const weather = data.weather[0].main;
+    const description = data.weather[0].description
+
+    const icon = data.weather[0].icon
+    const image_url = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
+    // res.json(response.data)
+    //Get the image 
+
+    res.write(`<p>The weather in ${city} is ${weather}</p>`)
+    res.write(`<p>The weather description in ${city} is ${description} </p>`)
+    res.write(`<img src=${image_url} />`)
+    res.send();
 })
 
 //Server runs fine. First commit of December 2023
