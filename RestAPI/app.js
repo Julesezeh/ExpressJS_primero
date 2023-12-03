@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid')
 
 app.use(express.json());
 
-const users = [
+let users = [
     {
         firstName: 'Kentavious',
         lastName: 'Cadwell',
@@ -41,6 +41,25 @@ app.get("/users/:id", (req, res) => {
     res.send(data)
 })
 
+//Update a User
+app.patch("/users/:id", (req, res) => {
+    const { id } = req.params;
+    const { firstName, lastName, country } = req.body;
+    const user_ = users.find((user) => user.id == id)
+
+    if (firstName) {
+        user_.firstName = firstName
+    } else if (lastName) {
+        user_.lastName = lastName
+    } else if (country) {
+        user_.country = country
+    }
+
+    console.log(`User with id ${user_.id} has been updated`)
+    res.send(user_)
+
+})
+
 
 //Create new User 
 app.post("/users", (req, res) => {
@@ -57,6 +76,16 @@ app.post("/users", (req, res) => {
 
 })
 
+
+//Delete user
+app.delete("/users/:id", (req, res) => {
+    const { id } = req.params
+
+    users = users.filter((user) => user.id !== id)
+
+
+    res.send("User has been deleted")
+})
 
 
 app.listen(3000, (req, res) => {
