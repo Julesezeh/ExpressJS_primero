@@ -56,6 +56,7 @@ app.patch("/users/:id", (req, res) => {
     }
 
     console.log(`User with id ${user_.id} has been updated`)
+    console.log("Happy Birthday Nicky!!")
     res.send(user_)
 
 })
